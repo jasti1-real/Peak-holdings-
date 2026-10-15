@@ -1,0 +1,13 @@
+name = "peak-holdings-api"
+main = "src/worker.js"
+compatibility_date = "2026-10-15"
+
+# Configure D1 after creating the database:
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "peak-holdings"
+# database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# Set payment secrets with Wrangler secrets; never commit API keys:
+# wrangler secret put MARZPAY_API_KEY
+# wrangler secret put MARZPAY_WEBHOOK_SECRET
