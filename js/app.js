@@ -24,21 +24,10 @@
     document.getElementById("homeLink").value = document.getElementById("refLink").value = link;
     showTab("home");
   }
-  async function refreshAccount() {
-    const data = await window.PeakAPI.get("/me");
-    // /me is authenticated; use the bearer token explicitly.
-    return data;
-  }
   async function loadAccount() {
     const token = localStorage.getItem("peak_token");
     if (!token) return;
-    const data = await window.PeakAPI.post("/logout", {}, token).catch(() => null);
-    // Session is restored with /me below; do not log out as a side effect.
-    const account = await fetch("https://peak-holdings-api.investmentreal95.workers.dev/api/me", {
-      headers: { authorization: "Bearer " + token }
-    });
-    const result = await account.json().catch(() => ({}));
-    if (!account.ok) throw new Error(result.error || "Please log in again.");
+    const result = await window.PeakAPI.get("/me", token);
     enter(result.user);
     document.getElementById("balance").textContent = fmt(result.balanceUgx || 0);
     renderLedger(result.ledger || []);
@@ -88,9 +77,9 @@
       localStorage.setItem("peak_token", data.token);
       localStorage.setItem("peak_user", JSON.stringify(data.user));
       enter(data.user);
-      const response = await fetch("https://peak-holdings-api.investmentreal95.workers.dev/api/me", {headers:{authorization:"Bearer "+data.token}});
-      const result = await response.json();
-      if (response.ok) { document.getElementById("balance").textContent = fmt(result.balanceUgx || 0); renderLedger(result.ledger || []); }
+      const result = await window.PeakAPI.get("/me", data.token);
+      document.getElementById("balance").textContent = fmt(result.balanceUgx || 0);
+      renderLedger(result.ledger || []);
     } catch (error) { alert(error.message); }
     finally { button.disabled = false; button.textContent = "Log in"; }
   });
