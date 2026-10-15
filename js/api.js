@@ -14,5 +14,5 @@ window.PeakAPI = (() => {
     if (!response.ok) throw new Error(data.error || "Request failed.");
     return data;
   }
-  return { request, get: path => request(path), post: (path, body, token) => request(path, body, token) };
+  return { request, get: (path, token) => request(path, undefined, token), post: (path, body, token) => request(path, body, token) };
 })();
