@@ -16,7 +16,7 @@ async function handleMarzCallback(req,e){let body;try{body=await req.json()}catc
 async function runDailyEarnings(e){
  const row=await e.DB.prepare("SELECT date(datetime('now','+3 hours')) AS uganda_date").first();
  const today=String(row?.uganda_date||"");
- if(!/^\\d{4}-\\d{2}-\\d{2}$/.test(today))throw new Error("Could not resolve Uganda earnings date.");
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(today))throw new Error("Could not resolve Uganda earnings date.");
  const snapshots=await e.DB.prepare("INSERT OR IGNORE INTO purchase_earning_terms(purchase_id,user_id,daily_amount_ugx,duration_days,start_date) SELECT pp.id,pp.user_id,p.daily_figure_ugx,p.duration_days,? FROM product_purchases pp JOIN products p ON p.id=pp.product_id WHERE pp.status='confirmed' AND p.terms_status='approved' AND p.daily_figure_ugx>0 AND p.duration_days>0 AND date(datetime(COALESCE(pp.updated_at,pp.created_at),'+3 hours'))<date(?)").bind(today,today).run();
  const credits=await e.DB.prepare("INSERT OR IGNORE INTO ledger_entries(id,user_id,entry_type,amount_ugx,direction,status,provider_reference,description,posted_at) SELECT 'daily-earn-'||pet.purchase_id||'-'||?,pet.user_id,'daily_earning',pet.daily_amount_ugx,'credit','posted','daily-earning:'||pet.purchase_id||':'||?,'Daily earnings · confirmed purchase '||pet.purchase_id||' · '||?,CURRENT_TIMESTAMP FROM purchase_earning_terms pet WHERE date(?)>=date(pet.start_date) AND CAST(julianday(date(?))-julianday(date(pet.start_date)) AS INTEGER)<pet.duration_days").bind(today,today,today,today,today).run();
  return {uganda_date:today,snapshots_created:Number(snapshots.meta?.changes||0),earnings_credited:Number(credits.meta?.changes||0)};
