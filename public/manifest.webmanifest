@@ -1,0 +1,11 @@
+{
+  "name": "Peak Holdings",
+  "short_name": "Peak Holdings",
+  "description": "Peak Holdings member account",
+  "start_url": "/?source=installed",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f8fb",
+  "theme_color": "#102b4e",
+  "icons": []
+}
