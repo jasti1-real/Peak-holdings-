@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+<title id="title">Peak Holdings</title><desc id="desc">Peak Holdings gold mountain and letter P emblem on a deep navy background.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#142d4c"/><stop offset="1" stop-color="#06111f"/></linearGradient><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe7a0"/><stop offset=".55" stop-color="#e8b84e"/><stop offset="1" stop-color="#b77920"/></linearGradient><linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#42e0ac"/><stop offset="1" stop-color="#0b805e"/></linearGradient></defs>
+<rect width="512" height="512" rx="112" fill="url(#bg)"/><rect x="15" y="15" width="482" height="482" rx="100" fill="none" stroke="#d8ad55" stroke-opacity=".55" stroke-width="3"/>
+<path d="M78 315 190 164l58 75 45-57 141 133H78Z" fill="url(#green)" opacity=".95"/><path d="m190 164 34 44-29-10-24 31-18-7 37-58Zm103 18 29 35-26-8-22 24-18-5 37-46Z" fill="#dff9ee" opacity=".9"/>
+<path d="M112 348h288" stroke="url(#gold)" stroke-width="10" stroke-linecap="round"/>
+<path d="M176 382V247h91c49 0 78 27 78 69s-29 69-78 69h-43v48h-48Zm48-91v52h40c21 0 33-10 33-26s-12-26-33-26h-40Z" fill="url(#gold)" stroke="#091727" stroke-width="5" stroke-linejoin="round"/>
+<circle cx="405" cy="111" r="17" fill="url(#gold)"/><path d="m405 79 6 20 20 6-20 6-6 20-6-20-20-6 20-6Z" fill="#fff0bd"/>
+</svg>
