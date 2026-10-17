@@ -10,3 +10,6 @@ binding = "DB"
 database_name = "peak-holdings-db"
 database_id = "99b18a25-a841-4f8a-8748-b53302cf5ae5"
 migrations_dir = "migrations"
+
+[triggers]
+crons = ["0 21 * * *"]
