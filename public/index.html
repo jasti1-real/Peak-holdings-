@@ -9,7 +9,7 @@ var tabs=[["home","⌂","Home"],["products","▦","Products"],["referrals","♧"
 function esc(x){return String(x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function money(n){return "UGX "+Number(n||0).toLocaleString("en-US")}
 function message(t){document.getElementById("msg").textContent=t}
-function toggleAuth(){login.classList.toggle("hide");register.classList.toggle("hide");message("")}
+function toggleAuth(){var loginPanel=document.getElementById("login");var registerPanel=document.getElementById("register");loginPanel.classList.toggle("hide");registerPanel.classList.toggle("hide");message("");}
 async function api(path,data){var r=await fetch("/api/"+path,{method:data?"POST":"GET",headers:data?{"content-type":"application/json"}:{},body:data?JSON.stringify(data):undefined,credentials:"same-origin"});var j=await r.json();if(!r.ok)throw Error(j.error||"Request failed");return j}
 async function login(){try{user=(await api("login",{phone:lp.value.trim(),password:lpass.value})).user;boot()}catch(e){message(e.message)}}
 async function register(){try{user=(await api("register",{name:rn.value.trim(),phone:rp.value.trim(),password:rpass.value,referralCode:rr.value.trim()})).user;boot()}catch(e){message(e.message)}}
