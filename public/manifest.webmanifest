@@ -9,15 +9,15 @@
   "theme_color": "#0b1220",
   "icons": [
     {
-      "src": "/peak-logo.webp",
-      "sizes": "192x192",
-      "type": "image/webp",
+      "src": "/peak-logo.png",
+      "sizes": "any",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/peak-logo.webp",
-      "sizes": "192x192",
-      "type": "image/webp",
+      "src": "/peak-logo.png",
+      "sizes": "any",
+      "type": "image/png",
       "purpose": "maskable"
     }
   ]
