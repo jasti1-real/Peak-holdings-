@@ -3,6 +3,8 @@ CREATE TABLE IF NOT EXISTS product_purchases (
  user_id TEXT NOT NULL REFERENCES users(id),
  product_id INTEGER NOT NULL REFERENCES products(id),
  amount_ugx INTEGER NOT NULL CHECK(amount_ugx > 0),
+ phone_e164 TEXT NOT NULL,
+ provider TEXT NOT NULL CHECK(provider IN ('mtn','airtel')),
  status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','confirmed','failed','cancelled')),
  provider_reference TEXT UNIQUE,
  created_at TEXT DEFAULT CURRENT_TIMESTAMP,
