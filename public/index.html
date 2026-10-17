@@ -45,7 +45,7 @@ main{padding-bottom:calc(25px + env(safe-area-inset-bottom))}
 <script>
 var tabs=[["home","⌂","Home"],["products","▦","Products"],["referrals","♧","Referrals"],["account","◉","Account"],["admin","⚙","Admin"]],page="home",user=null;
 function esc(x){return String(x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
-function machineHero(p){if(p.image_path)return '<img src="'+esc(p.image_path)+'" alt="'+esc(p.name)+' equipment">';var icons=["⚡","🌾","💧","☀️","🛠️","🧪","🐔","❄️","🏭","🧊"];return '<div class="machine-art"><span class="tag">PEAK HOLDINGS</span><span class="symbol">'+icons[(Number(p.id||1)-1)%icons.length]+'</span><span class="name">'+esc(p.name.toUpperCase())+'</span></div>'}
+function machineHero(p){var id=Number(p.id||1);if(id>=1&&id<=10)return '<img src="https://raw.githubusercontent.com/jasti1-real/Peak-holdings-/main/machine-'+id+'.jpg" alt="'+esc(p.name)+' equipment" loading="lazy" style="width:100%;height:100%;object-fit:contain;border-radius:12px;background:#fff">';if(p.image_path)return '<img src="'+esc(p.image_path)+'" alt="'+esc(p.name)+' equipment">';return '<div class="machine-art"><span class="tag">PEAK HOLDINGS</span><span class="symbol">🏭</span><span class="name">'+esc(p.name.toUpperCase())+'</span></div>'}
 function money(n){return "UGX "+Number(n||0).toLocaleString("en-US")}
 function message(t,success){var m=document.getElementById("msg");m.textContent=t||"";m.classList.toggle("auth-success",!!success)}
 function toggleAuth(){var loginPanel=document.getElementById("login");var registerPanel=document.getElementById("register");loginPanel.classList.toggle("hide");registerPanel.classList.toggle("hide");message("");}
