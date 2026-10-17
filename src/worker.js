@@ -6,8 +6,6 @@ const te=new TextEncoder();
 const b64=a=>btoa(String.fromCharCode(...new Uint8Array(a))).replace(/=/g,"").replaceAll("+","-").replaceAll("/","_");
 const rnd=n=>b64(crypto.getRandomValues(new Uint8Array(n)));
 const sha=async x=>b64(await crypto.subtle.digest("SHA-256",te.encode(x)));
-async function pass(password,salt){const key=await crypto.subtle.importKey("raw",te.encode(password),"PBKDF2",false,["deriveBits"]);const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:Uint8Array.from(atob(salt.replaceAll("-","+").replaceAll("_","/")+"=="),c=>c.charCodeAt(0)),iterations:100000,hash:"SHA-256"},key,256);return b64(bits)}
-function normalizePhone(value){let p=String(value||"").replace(/[\\s()-]/g,"");if(p.startsWith("+"))p=p.slice(1);if(p.startsWith("256")&&p.length===12)return "+"+p;if(p.startsWith("0")&&p.length===10)return "+256"+p.slice(1);if(p.startsWith("7")&&p.length===9)return "+256"+p;return null}
 function sessionToken(req){return req.headers.get("cookie")?.split(";").map(x=>x.trim()).find(x=>x.startsWith("ph_session="))?.slice(11)||null}
 async function me(req,e){let t=sessionToken(req);if(!t)return null;return e.DB.prepare("SELECT u.id,u.full_name,u.phone_e164,u.referral_code FROM sessions s JOIN users u ON u.id=s.user_id WHERE s.id_hash=? AND s.expires_at>? AND u.status='active'").bind(await sha(t),new Date().toISOString()).first()}
 function out(data,status=200,headers={}){return new Response(JSON.stringify(data),{status,headers:{"content-type":"application/json; charset=utf-8","cache-control":"public, max-age=60, stale-while-revalidate=300",...headers}})}
