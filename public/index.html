@@ -202,37 +202,6 @@ html[data-theme="light"] .theme-toggle{background:#eaf0f6;color:#18314d;border-c
 .promo-topline,.promo-slides,.promo-footer,.promo-close{z-index:1}
 .promo-slides{background:linear-gradient(180deg,transparent,rgba(11,20,34,.15))}
 @media(max-width:390px){.logo-img{width:45px;height:45px;flex-basis:45px;border-radius:12px}.promo-card:before{background-size:cover,230px auto}}
-
-/* Targeted header wordmark contrast fix */
-.header .brand>span{color:#102b4e!important;-webkit-text-fill-color:#102b4e!important;font-weight:900!important}
-
-/* Rotating Peak centre action button */
-@media(max-width:700px){
-.bottom{align-items:center;min-height:72px;padding:7px 5px calc(7px + env(safe-area-inset-bottom));gap:2px;background:rgba(248,250,253,.97);backdrop-filter:blur(14px);box-shadow:0 -8px 28px rgba(4,20,43,.12);z-index:900}
-.bottom button{flex:1;min-width:0;border:0;border-radius:12px;padding:4px 1px;font-size:11px;line-height:1.25;background:transparent;color:var(--mut)}
-.bottom .on{color:var(--g);font-weight:800}
-.bottom .center-action{flex:0 0 62px;width:62px;height:62px;margin-top:-24px;border-radius:50%;padding:5px;background:linear-gradient(145deg,#0b2142,#102b4e);border:3px solid #f5cf69;box-shadow:0 4px 14px #07172d44;display:flex;align-items:center;justify-content:center;position:relative}
-.center-action img{width:100%;height:100%;border-radius:50%;object-fit:cover;animation:peakLogoSpin 12s linear infinite}
-.center-action:after{content:"";position:absolute;inset:-6px;border:1px solid #d8a84e;border-radius:50%;opacity:.65;animation:peakPulse 2.8s ease-in-out infinite;pointer-events:none}
-@keyframes peakLogoSpin{to{transform:rotate(360deg)}}
-@keyframes peakPulse{0%,100%{transform:scale(.96);opacity:.35}50%{transform:scale(1.07);opacity:.85}}
-.quick-actions{position:fixed;bottom:86px;left:50%;transform:translateX(-50%);z-index:950;display:flex;gap:8px;padding:10px;background:#102b4e;border:1px solid #d8a84e;border-radius:18px;box-shadow:0 10px 32px #0004;max-width:calc(100vw - 24px)}
-.quick-actions button{border-radius:12px;padding:11px 12px;background:#fff;color:#102b4e;font-size:12px;font-weight:800;white-space:nowrap}
-.quick-actions button:first-child{background:#16845b;color:#fff}
-.quick-actions.hide{display:none}
-}
-@media(prefers-reduced-motion:reduce){.center-action img,.center-action:after{animation:none}}
-
-/* Ensure the centre logo rotates reliably on mobile browsers */
-@keyframes peakHoldingsSpinFix{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-@keyframes peakHoldingsGlowFix{0%,100%{box-shadow:0 0 0 2px rgba(245,207,105,.28),0 4px 14px #07172d44}50%{box-shadow:0 0 0 5px rgba(245,207,105,.6),0 4px 22px #d8a84e66}}
-@media(max-width:700px){
-#bottom button.center-action img{display:block!important;animation:peakHoldingsSpinFix 7s linear infinite!important;transform-origin:50% 50%!important;will-change:transform}
-#bottom button.center-action{animation:peakHoldingsGlowFix 2.8s ease-in-out infinite}
-}
-@media(prefers-reduced-motion:reduce){
-#bottom button.center-action img,#bottom button.center-action{animation:none!important;will-change:auto}
-}
 </style></head><body><div class="wrap"><header class="header"><div class="brand"><img class="logo-img" src="/peak-logo.png" alt="Peak Holdings logo"> <span>PEAK HOLDINGS</span></div><div class="header-tools"><span id="member" class="muted"></span><button id="themeToggle" class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Switch to light mode" title="Switch theme">☀️ <span>Light mode</span></button></div></header>
 <div class="welcome-ticker" role="region" aria-label="Peak Holdings welcome message"><span class="ticker-badge">WELCOME</span><div class="ticker-window"><div class="ticker-track"><span>Welcome to Peak Holdings — where your financial goals deserve thoughtful planning.</span><span aria-hidden="true">✦</span><span>Explore opportunities, understand the terms, and make informed decisions.</span><span aria-hidden="true">✦</span><span>Invest today. Grow tomorrow. Build your future one step at a time.</span><span aria-hidden="true">✦</span><span>Welcome to Peak Holdings — where your financial goals deserve thoughtful planning.</span><span aria-hidden="true">✦</span><span>Explore opportunities, understand the terms, and make informed decisions.</span><span aria-hidden="true">✦</span><span>Invest today. Grow tomorrow. Build your future one step at a time.</span><span aria-hidden="true">✦</span></div></div></div>
 <section id="auth" class="panel auth"><div id="login"><h1>Welcome back</h1><p class="muted">Log in with your registered phone.</p><label>Telephone number<input id="lp" type="tel" inputmode="tel" placeholder="0771234567 or +256771234567"></label><label>Password<input id="lpass" type="password" autocomplete="current-password"></label><button class="btn primary wide" onclick="submitLogin()">Log in</button><p class="muted">New here? <a href="#" onclick="toggleAuth();return false">Create account</a></p></div><div id="register" class="hide"><h1>Create account</h1><label>Full name<input id="rn"></label><label>Telephone number<input id="rp" type="tel" inputmode="tel" placeholder="0771234567 or +256771234567"></label><label>Password (10+ characters)<input id="rpass" type="password" autocomplete="new-password"></label><label>Referral code (optional)<input id="rr"></label><button class="btn primary wide" onclick="submitRegistration()">Register</button><p class="muted">Already registered? <a href="#" onclick="toggleAuth();return false">Log in</a></p></div><p id="msg" class="muted"></p></section>
@@ -254,7 +223,7 @@ async function submitRegistration(){var btn=document.querySelector("#register bu
 document.querySelectorAll("#login input").forEach(function(input){input.addEventListener("keydown",function(e){if(e.key==="Enter")submitLogin()})});
 document.querySelectorAll("#register input").forEach(function(input){input.addEventListener("keydown",function(e){if(e.key==="Enter")submitRegistration()})});
 function boot(){auth.classList.add("hide");app.classList.remove("hide");member.textContent=user.full_name;applyProfilePicture();navs();draw();setTimeout(openWelcomePromo,450)}
-function navs(){document.getElementById("nav").innerHTML=tabs.filter(function(t){return t[0]!=="admin"||!!user.is_admin}).map(function(t){return '<button class="'+(page===t[0]?"on":"")+'" onclick="go(\\''+t[0]+'\\')">'+t[2]+'</button>'}).join("");var items=[["home","⌂","Home"],["products","▦","Products"],["referrals","♧","Referrals"],["account","◉","Account"]];if(user.is_admin)items.push(["admin","⚙","Admin"]);document.getElementById("bottom").innerHTML=items.slice(0,2).map(function(t){return '<button class="'+(page===t[0]?"on":"")+'" onclick="go(\\''+t[0]+'\\')">'+t[1]+'<br>'+t[2]+'</button>'}).join("")+'<button class="center-action" onclick="toggleQuickActions()" aria-label="Open Peak quick actions" title="Quick actions"><img src="/peak-logo.png" alt="Peak Holdings"></button>'+items.slice(2).map(function(t){return '<button class="'+(page===t[0]?"on":"")+'" onclick="go(\\''+t[0]+'\\')">'+t[1]+'<br>'+t[2]+'</button>'}).join("");var q=document.getElementById("quickActions");if(!q){q=document.createElement("div");q.id="quickActions";q.className="quick-actions hide";q.innerHTML='<button onclick="closeQuickActions();showActionModal(\\'deposit\\')">Deposit</button><button onclick="closeQuickActions();showActionModal(\\'withdraw\\')">Withdraw</button><button onclick="closeQuickActions();go(\\'account\\')">Earnings</button>';document.body.appendChild(q)}}function toggleQuickActions(){var q=document.getElementById("quickActions");if(q)q.classList.toggle("hide")}function closeQuickActions(){var q=document.getElementById("quickActions");if(q)q.classList.add("hide")}
+function navs(){["nav","bottom"].forEach(function(id){document.getElementById(id).innerHTML=tabs.filter(function(t){return t[0]!=="admin"||!!user.is_admin}).map(function(t){return '<button class="'+(page===t[0]?"on":"")+'" onclick="go(\''+t[0]+'\')">'+(id==="bottom"?t[1]+"<br>":"")+t[2]+"</button>"}).join("")})}
 function go(p){page=p;navs();var s=document.getElementById("screen");s.innerHTML="<div class=\"card muted\" style=\"padding:24px;text-align:center\">Loading…</div>";draw().catch(function(err){console.error("Peak Holdings page render failed",err);s.innerHTML="<div class=\"card\" style=\"padding:20px\"><b>Page error</b><p>"+esc(err&&err.message?err.message:"Unknown error")+"</p><button class=\"btn light\" onclick=\"go(\'"+page+"\')\">Retry</button></div>"})}
 function ledgerRow(x){return '<tr><td>'+esc(x.posted_at||x.created_at)+'</td><td>'+esc(x.description)+'</td><td>'+esc(x.status)+'</td><td class="'+(x.direction==="credit"?"ledger-credit":"ledger-debit")+'">'+(x.direction==="debit"?"−":"+")+money(x.amount_ugx)+'</td></tr>'}
 function stat(label,val){return '<div class="card stat">'+label+'<b>'+money(val)+'</b></div>'}
