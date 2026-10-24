@@ -247,3 +247,19 @@ input,.modal-body select,.modal-body input{background:rgba(255,255,255,.72);bord
 @media(prefers-reduced-motion:reduce){.btn,.nav button{transition:none}}
 
 .ui-icon{width:20px;height:20px;display:inline-block;vertical-align:middle;flex:0 0 auto}.nav button{display:inline-flex;align-items:center;justify-content:center;gap:8px}.bottom button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-width:48px;font-size:11px}.bottom .ui-icon{width:22px;height:22px}.nav button.on .ui-icon,.bottom button.on .ui-icon{color:var(--g)}
+
+
+/* PEAK HOLDINGS: account screen contrast and mobile transaction table fix */
+#screen h1{color:#173f35!important;-webkit-text-fill-color:#173f35!important}
+#screen .card{color:#20352e}
+#screen .card h2,#screen .card h3,#screen .card p,#screen .card span{color:#263a33;-webkit-text-fill-color:currentColor}
+#screen .card h2{font-weight:800}
+#screen .table{color:#263a33!important;overflow-x:auto;max-width:100%}
+#screen .table table{width:100%;border-collapse:collapse}
+#screen .table th{background:#edf5f0!important;color:#36574a!important;-webkit-text-fill-color:#36574a!important;text-align:left}
+#screen .table td{color:#263a33!important;-webkit-text-fill-color:#263a33!important;border-bottom:1px solid #e1e9e4;padding:12px 10px}
+#screen .table tr:nth-child(even) td{background:#f7faf8}
+#screen .table .ledger-credit{color:#14754d!important;-webkit-text-fill-color:#14754d!important}
+#screen .table .ledger-debit{color:#a33434!important;-webkit-text-fill-color:#a33434!important}
+#screen .card{background:rgba(255,255,255,.96)}
+@media(max-width:700px){#screen .table{overflow-x:auto;display:block}#screen .table table{min-width:540px}#screen .card{padding:20px}}
